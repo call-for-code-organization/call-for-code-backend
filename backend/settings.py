@@ -127,6 +127,7 @@ REST_FRAMEWORK = {
 django_heroku.settings(locals())
 
 CORS_ORIGIN_WHITELIST = (
+    'https://ibm-hackathon-shawee.herokuapp.com',
     'http://localhost:3000',
     'http://localhost:8000',
     )
