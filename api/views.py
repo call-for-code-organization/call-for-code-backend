@@ -93,7 +93,8 @@ class OngAPIList(APIView):
 				return Response({'success': False, 'detail':'Ongs não encontradas'}, status=status.HTTP_404_NOT_FOUND)
 
 		serializer = OngModelSerializer(ong, many=True)
-		ongs = serializer.data
+		ongs = []
+		ongs.extend(serializer.data)
 
 		for ong in ongs:
 			tags = []
@@ -110,10 +111,7 @@ class OngAPIList(APIView):
 			ong['need_bills']       = bills
 			ong['tags']             = tags
 
-		if not type(ongs) == list:
-			ongs = [ongs]
-
-		response = {'success': True, 'ongs': ongs if ongs else []}
+		response = {'success': True, 'ongs': ongs}
 
 		return Response(response)
 
